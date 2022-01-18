@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lista_de_filmes_e_series">
    <application
-        android:label="lista_de_filmes_e_series"
+        android:label="Filmes e Séries"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
