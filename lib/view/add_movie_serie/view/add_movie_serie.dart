@@ -1,0 +1,175 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lista_de_filmes_e_series/components/popup_login.dart';
+
+class AddMovieSerie extends StatefulWidget {
+  final String typeInsert;
+  const AddMovieSerie({Key? key, required this.typeInsert}) : super(key: key);
+
+  @override
+  _AddMovieSerieState createState() => _AddMovieSerieState();
+}
+
+class _AddMovieSerieState extends State<AddMovieSerie> {
+  final _addKey = GlobalKey<FormState>();
+
+  final _nameTextController = TextEditingController();
+  final _typeTextController = TextEditingController();
+  final _ratingTextController = TextEditingController();
+  final _whereWatchTextController = TextEditingController();
+
+  final _focusName = FocusNode();
+  final _focusType = FocusNode();
+  final _focusRating = FocusNode();
+  final _focusWhere = FocusNode();
+
+  late DatabaseReference _ref;
+
+  @override
+  void initState() {
+    _ref = FirebaseDatabase.instance.ref().child(widget.typeInsert);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        _focusName.unfocus();
+        _focusType.unfocus();
+        _focusRating.unfocus();
+        _focusWhere.unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Adicionar ' + widget.typeInsert),
+        ),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Form(
+              key: _addKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  TextFormField(
+                    controller: _nameTextController,
+                    focusNode: _focusName,
+                    decoration: InputDecoration(
+                      hintText: "Nome",
+                      errorBorder: UnderlineInputBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                        borderSide: const BorderSide(
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFormField(
+                      controller: _typeTextController,
+                      focusNode: _focusType,
+                      decoration: InputDecoration(
+                        hintText: "Gênero",
+                        errorBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFormField(
+                      controller: _ratingTextController,
+                      focusNode: _focusRating,
+                      decoration: InputDecoration(
+                        hintText: "Nota do IMDB",
+                        errorBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFormField(
+                      controller: _whereWatchTextController,
+                      focusNode: _focusWhere,
+                      decoration: InputDecoration(
+                        hintText: "Onde assistir",
+                        errorBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              registerMoviewSerie();
+                            },
+                            child: const Text(
+                              'Adicionar',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void registerMoviewSerie() {
+    String name = _nameTextController.text;
+    String gender = _typeTextController.text;
+    String rating = _ratingTextController.text;
+    String whereWatch = _whereWatchTextController.text;
+
+    Map<String, String> movieSerie = {
+      'name': name,
+      'gender': gender,
+      'rating': rating,
+      'whereWatch': whereWatch,
+    };
+
+    if (_isInputEmpty()) {
+      loginPopup('Digite todas as informações!', true);
+    } else {
+      debugPrint(_ref.key);
+      _ref.push().set(movieSerie).then((value) => Get.back());
+    }
+  }
+
+  bool _isInputEmpty() {
+    if (_nameTextController.text == "" ||
+        _typeTextController.text == "" ||
+        _ratingTextController.text == "" ||
+        _whereWatchTextController.text == "") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}

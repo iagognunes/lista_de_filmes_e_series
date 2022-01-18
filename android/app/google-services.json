@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47798477161",
+    "project_id": "lista-series-filmes",
+    "storage_bucket": "lista-series-filmes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47798477161:android:040ee05fa62af552b89df8",
+        "android_client_info": {
+          "package_name": "com.example.lista_de_filmes_e_series"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47798477161-j530ksrktemrisdtcktvrh908cjbimhh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI0MxGe3CFKa6Lcyw0NS9chtzeLTaOsp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47798477161-j530ksrktemrisdtcktvrh908cjbimhh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
