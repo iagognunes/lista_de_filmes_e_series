@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lista_de_filmes_e_series/components/popup_delete.dart';
 
 Widget seriesContainer(series, String seriesKey) {
   return Card(
@@ -75,7 +76,7 @@ Widget seriesContainer(series, String seriesKey) {
             IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                debugPrint(seriesKey);
+                PopUpDelete(type: 'Série', masterKey: seriesKey).showPopup();
               },
             ),
           ],

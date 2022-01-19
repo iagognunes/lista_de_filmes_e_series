@@ -1,9 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:lista_de_filmes_e_series/components/popup_delete.dart';
 
 Widget filmesContainer(filmes, String movieKey) {
-  DatabaseReference _ref = FirebaseDatabase.instance.ref().child('Filme');
-
   return Card(
     elevation: 5,
     shadowColor: Colors.deepPurple,
@@ -79,8 +77,7 @@ Widget filmesContainer(filmes, String movieKey) {
             IconButton(
               icon: const Icon(Icons.delete),
               onPressed: () {
-                _ref.child(movieKey).remove();
-                debugPrint(movieKey);
+                PopUpDelete(type: 'Filme', masterKey: movieKey).showPopup();
               },
             ),
           ],
