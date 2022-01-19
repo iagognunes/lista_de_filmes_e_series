@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:lista_de_filmes_e_series/components/fire_auth.dart';
@@ -97,6 +98,55 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 32.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          final _ref = FirebaseDatabase.instance.ref();
+
+                          _ref.child('Users').child('/teste2').set({
+                            'name': 'Iago teste',
+                            'email': 'iagognunes@outlook.com',
+                            'grupo': 'grupo1',
+                          });
+
+                          _ref
+                              .child('Grupos')
+                              .child('/grupo1')
+                              .child('/Filmes')
+                              .set({
+                            'name': 'name',
+                            'gender': 'gender',
+                            'rating': 'rating',
+                            'whereWatch': 'whereWatch',
+                          });
+
+                          _ref
+                              .child('Grupos')
+                              .child('/grupo1')
+                              .child('/Séries')
+                              .set({
+                            'name': 'name',
+                            'gender': 'gender',
+                            'rating': 'rating',
+                            'whereWatch': 'whereWatch',
+                          });
+                        },
+                        child: const Text('Adicionar usuario'),
+                      ),
+                      const SizedBox(height: 32.0),
+                      // ElevatedButton(
+                      //   onPressed: () {
+                      //     final _ref = FirebaseDatabase.instance.ref();
+
+                      //     _ref
+                      //         .child('Users/iagognunes/grupo')
+                      //         .onValue
+                      //         .listen((event) {
+                      //       debugPrint(event.snapshot.value.toString());
+                      //     });
+                      //   },
+                      //   child: const Text('Pegar grupo do usuario'),
+                      // ),
                       const SizedBox(height: 32.0),
                       _isProcessing
                           ? const CircularProgressIndicator()

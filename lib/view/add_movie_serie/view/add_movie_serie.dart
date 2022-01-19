@@ -147,7 +147,7 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
     String rating = _ratingTextController.text;
     String whereWatch = _whereWatchTextController.text;
 
-    Map<String, String> movieSerie = {
+    Map<String, Object> movieSerie = {
       'name': name,
       'gender': gender,
       'rating': rating,

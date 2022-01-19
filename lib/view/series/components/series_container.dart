@@ -14,6 +14,7 @@ Widget seriesContainer(series, String seriesKey) {
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(
                   text: TextSpan(
@@ -51,7 +52,7 @@ Widget seriesContainer(series, String seriesKey) {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16)),
                       TextSpan(
-                        text: series['rating'],
+                        text: series['rating'] + '/10',
                         style: const TextStyle(fontSize: 15),
                       ),
                     ],

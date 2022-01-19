@@ -52,7 +52,7 @@ Widget filmesContainer(filmes, String movieKey) {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16)),
                       TextSpan(
-                        text: filmes['rating'],
+                        text: filmes['rating'] + '/10',
                         style: const TextStyle(fontSize: 15),
                       ),
                     ],

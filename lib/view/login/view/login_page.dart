@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' as getx;
+import 'package:get/get.dart';
 import 'package:lista_de_filmes_e_series/components/fire_auth.dart';
 import 'package:lista_de_filmes_e_series/components/popup_login.dart';
 import 'package:lista_de_filmes_e_series/components/size_screen.dart';
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isProcessing = false;
 
-  UserController userController = getx.Get.put(UserController());
+  UserController userController = Get.put(UserController());
 
   Future<FirebaseApp> _initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (user != null) {
       userController.updateUserName(user.displayName);
-      getx.Get.off(() => const Menu());
+      Get.off(() => const Menu());
     }
 
     return firebaseApp;
@@ -158,7 +158,6 @@ class _LoginPageState extends State<LoginPage> {
                                       children: [
                                         TextButton(
                                           onPressed: () {
-                                            // getx.Get.to(const RegisterPage());
                                             if (_emailTextController.text ==
                                                 '') {
                                               loginPopup(
@@ -245,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                                                               .updateUserName(user
                                                                   .displayName);
 
-                                                          getx.Get.off(() =>
+                                                          Get.off(() =>
                                                               const Menu());
                                                         }
                                                       }

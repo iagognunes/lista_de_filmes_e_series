@@ -61,7 +61,7 @@ class FireAuth {
 
   static Future<User?> refreshUser(User user) async {
     FirebaseAuth auth = FirebaseAuth.instance;
-
+    
     await user.reload();
     User? refreshedUser = auth.currentUser;
 
