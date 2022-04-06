@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lista_de_filmes_e_series/components/popup_login.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class AddMovieSerie extends StatefulWidget {
   final String typeInsert;
@@ -16,11 +17,13 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
 
   final _nameTextController = TextEditingController();
   final _typeTextController = TextEditingController();
+  final _sinopseTextController = TextEditingController();
   final _ratingTextController = TextEditingController();
   final _whereWatchTextController = TextEditingController();
 
   final _focusName = FocusNode();
   final _focusType = FocusNode();
+  final _focusSinopse = FocusNode();
   final _focusRating = FocusNode();
   final _focusWhere = FocusNode();
 
@@ -38,6 +41,7 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
       onTap: () {
         _focusName.unfocus();
         _focusType.unfocus();
+        _focusSinopse.unfocus();
         _focusRating.unfocus();
         _focusWhere.unfocus();
       },
@@ -73,6 +77,22 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
                       focusNode: _focusType,
                       decoration: InputDecoration(
                         hintText: "Gênero",
+                        errorBorder: UnderlineInputBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                          borderSide: const BorderSide(
+                            color: Colors.red,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: TextFormField(
+                      controller: _sinopseTextController,
+                      focusNode: _focusSinopse,
+                      decoration: InputDecoration(
+                        hintText: "Sinopse",
                         errorBorder: UnderlineInputBorder(
                           borderRadius: BorderRadius.circular(6.0),
                           borderSide: const BorderSide(
@@ -144,6 +164,7 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
   void registerMoviewSerie() {
     String name = _nameTextController.text;
     String gender = _typeTextController.text;
+    String sinopse = _sinopseTextController.text;
     String rating = _ratingTextController.text;
     String whereWatch = _whereWatchTextController.text;
 
@@ -152,12 +173,18 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
       'gender': gender,
       'rating': rating,
       'whereWatch': whereWatch,
+      'sinopse': sinopse
     };
 
     if (_isInputEmpty()) {
       loginPopup('Digite todas as informações!', true);
     } else {
       debugPrint(_ref.key);
+      OneSignal.shared.postNotification(OSCreateNotification(
+        playerIds: ['b3giabc2-9a47-4647-adda-3e4583a2d19e'],
+        heading: 'teste sendcode',
+        content: 'teste',
+      ));
       _ref.push().set(movieSerie).then((value) => Get.back());
     }
   }

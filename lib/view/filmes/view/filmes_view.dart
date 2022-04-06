@@ -30,8 +30,8 @@ class _FilmesViewState extends State<FilmesView> {
         onPressed: () => Get.to(() => const AddMovieSerie(typeInsert: 'Filme')),
       ),
       body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: SizedBox(

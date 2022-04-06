@@ -51,10 +51,12 @@ class _SeriesViewState extends State<SeriesView> {
                       position: Tween<Offset>(
                               begin: const Offset(1, 0),
                               end: const Offset(0, 0))
-                          .animate(CurvedAnimation(
-                              parent: animation,
-                              curve: Curves.bounceOut,
-                              reverseCurve: Curves.bounceIn)),
+                          .animate(
+                        CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceOut,
+                            reverseCurve: Curves.bounceIn),
+                      ),
                       child: seriesContainer(
                           snapshot.value, snapshot.key.toString()),
                     );
