@@ -1,6 +1,6 @@
 # lista_de_filmes_e_series
 
-A new Flutter project.
+Projeto funcionando na versão 3.0.1 Flutter.
 
 ## Getting Started
 
