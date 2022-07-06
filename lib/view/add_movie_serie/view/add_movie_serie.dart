@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lista_de_filmes_e_series/components/popup_login.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import '../../../components/notifications.dart';
 
 class AddMovieSerie extends StatefulWidget {
   final String typeInsert;
@@ -86,22 +87,22 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: TextFormField(
-                      controller: _sinopseTextController,
-                      focusNode: _focusSinopse,
-                      decoration: InputDecoration(
-                        hintText: "Sinopse",
-                        errorBorder: UnderlineInputBorder(
-                          borderRadius: BorderRadius.circular(6.0),
-                          borderSide: const BorderSide(
-                            color: Colors.red,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 10),
+                  //   child: TextFormField(
+                  //     controller: _sinopseTextController,
+                  //     focusNode: _focusSinopse,
+                  //     decoration: InputDecoration(
+                  //       hintText: "Sinopse",
+                  //       errorBorder: UnderlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(6.0),
+                  //         borderSide: const BorderSide(
+                  //           color: Colors.red,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: TextFormField(
@@ -141,6 +142,14 @@ class _AddMovieSerieState extends State<AddMovieSerie> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () async {
+                              NotificationService().showLocalNotification(
+                                CustomNotification(
+                                  id: 0,
+                                  title: 'App Filmes & Séries',
+                                  body: 'Foi adicionado(a) um(a) novo(a) ${widget.typeInsert}.',
+                                  payload: widget.typeInsert,
+                                ),
+                              );
                               registerMoviewSerie();
                             },
                             child: const Text(

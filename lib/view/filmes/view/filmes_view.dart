@@ -35,13 +35,14 @@ class _FilmesViewState extends State<FilmesView> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: SizedBox(
-                height: displaySize(context).height,
+                height: displaySize(context).height * 0.85,
                 width: displaySize(context).width * 0.9,
                 child: FirebaseAnimatedList(
                   query: FirebaseDatabase.instance
                       .ref()
                       .child('Filme')
                       .orderByChild('rating'),
+                  duration: const Duration(seconds: 2),
                   itemBuilder: (
                     BuildContext context,
                     DataSnapshot snapshot,

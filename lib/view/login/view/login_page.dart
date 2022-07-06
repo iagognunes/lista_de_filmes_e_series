@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: SingleChildScrollView(
                       child: SizedBox(
                         width: displaySize(context).width * 0.85,
-                        height: displaySize(context).height * 0.55,
+                        height: displaySize(context).height * 0.7,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

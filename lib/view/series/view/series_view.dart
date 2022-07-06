@@ -33,7 +33,7 @@ class _SeriesViewState extends State<SeriesView> {
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: SizedBox(
-                height: displaySize(context).height,
+                height: displaySize(context).height * 0.85,
                 width: displaySize(context).width * 0.9,
                 child: FirebaseAnimatedList(
                   query: FirebaseDatabase.instance
